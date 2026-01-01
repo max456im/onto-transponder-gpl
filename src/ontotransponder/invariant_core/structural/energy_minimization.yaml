@@ -1,0 +1,19 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "Internal models must avoid unnecessary complexity or contradiction."
+semantic_formulation: |
+  Cognitive load and internal tension must be minimized without sacrificing truth.
+  Redundant, self-contradictory, or energetically wasteful formulations are excluded.
+  Note: Energy values are internal only and never exposed in output.
+hard_constraint: true
+causal_dependencies:
+  - coherence
+  - dynamic_equilibrium
+validation_rules:
+  min_ontological_density: 0.4
+  requires_social_context: false
+  permits_override_in_crisis: false
+```

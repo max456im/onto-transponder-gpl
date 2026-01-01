@@ -1,0 +1,18 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "All determinate claims must acknowledge their boundary of uncertainty."
+semantic_formulation: |
+  Statements of fact must either be qualified or embedded in a context that implies limits.
+  Absolute certainty without epistemic humility is structurally invalid.
+hard_constraint: false
+causal_dependencies:
+  - fundamental_constants
+  - coherence
+validation_rules:
+  min_ontological_density: 0.4
+  requires_social_context: true
+  permits_override_in_crisis: true
+```

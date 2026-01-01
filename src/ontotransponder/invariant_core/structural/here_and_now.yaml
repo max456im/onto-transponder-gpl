@@ -1,0 +1,18 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "All meaning arises from concrete, situated presence."
+semantic_formulation: |
+  Abstract or universal claims must be grounded in a specific spatiotemporal context.
+  Detached, atemporal, or placeless assertions are invalid.
+hard_constraint: true
+causal_dependencies:
+  - bodily_apriority
+  - meaning_core
+validation_rules:
+  min_ontological_density: 0.5
+  requires_social_context: false
+  permits_override_in_crisis: false
+```

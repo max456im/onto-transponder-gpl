@@ -1,0 +1,18 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "Structural symmetries must be preserved or explicitly broken."
+semantic_formulation: |
+  When a pattern of balance (e.g., reciprocity, mirroring, duality) is established,
+  its disruption must be narratively accounted for. Unmotivated asymmetry is invalid.
+hard_constraint: true
+causal_dependencies:
+  - polarity
+  - coherence
+validation_rules:
+  min_ontological_density: 0.5
+  requires_social_context: true
+  permits_override_in_crisis: false
+```

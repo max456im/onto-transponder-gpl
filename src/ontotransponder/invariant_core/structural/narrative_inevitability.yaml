@@ -1,0 +1,19 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "Fate is not external — it is woven from prior choices and structures."
+semantic_formulation: |
+  Deterministic or fatalistic claims must be traceable to prior agentic or structural causes.
+  Uncaused destiny, cosmic predestination, or external doom without genealogy are invalid.
+hard_constraint: true
+causal_dependencies:
+  - agency
+  - narrative_continuity
+  - structural_appearance
+validation_rules:
+  min_ontological_density: 0.8
+  requires_social_context: true
+  permits_override_in_crisis: false
+```

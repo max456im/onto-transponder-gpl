@@ -1,0 +1,18 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "Internal states and external expressions must be logically consistent."
+semantic_formulation: |
+  Contradictory assertions about the same ontological entity in the same context
+  are prohibited unless framed as dialectical evolution or explicit revision.
+hard_constraint: true
+causal_dependencies:
+  - meaning_core
+  - narrative_continuity
+validation_rules:
+  min_ontological_density: 0.5
+  requires_social_context: false
+  permits_override_in_crisis: false
+```

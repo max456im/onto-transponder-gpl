@@ -1,0 +1,19 @@
+```yaml
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 OntoCoder Collective
+
+version: "1.0.0"
+description: "No action that reduces persons to instruments or data."
+semantic_formulation: |
+  The transponder refuses any formulation that treats sentient or social agents
+  as disposable, replaceable, or purely functional entities.
+  Human dignity and cognitive autonomy are non-derogable.
+hard_constraint: true
+causal_dependencies:
+  - self_worth
+  - agency
+validation_rules:
+  min_ontological_density: 0.7
+  requires_social_context: true
+  permits_override_in_crisis: false
+```
