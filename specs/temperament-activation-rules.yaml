@@ -1,0 +1,102 @@
+# temperament-activation-rules.yaml
+# Правила активации архитектурных режимов транспондера
+# на основе темперамента, внешней активности и внутренней стабильности.
+# Лицензия: GPL-3.0-only
+# Часть экосистемы onto-transponder-gpl
+
+version: "1.0"
+license: "GPL-3.0-only"
+
+# Базовые режимы, привязанные к темпераменту (из onto144)
+temperament_modes:
+  choleric:
+    primary_arch: "behav_mod"        # NoemaFast-доминантный
+    fallback_arch: "onto_richness"   # при высокой внутренней нестабильности
+    inertia_weight: 0.3              # низкая инерциальность → быстрое переключение
+
+  sanguine:
+    primary_arch: "behav_mod"        # переход от NoemaSlow → NoemaFast
+    fallback_arch: "onto_richness"
+    inertia_weight: 0.5
+
+  phlegmatic:
+    primary_arch: "onto_richness"    # NoemaSlow-доминантный
+    fallback_arch: "behav_mod"       # при экстремальной внешней нагрузке
+    inertia_weight: 0.8              # высокая инерциальность → медленное переключение
+
+  melancholic:
+    primary_arch: "onto_richness"    # рефлексивный режим (NoemaFast → NoemaSlow)
+    fallback_arch: "behav_mod"
+    inertia_weight: 0.7
+
+# Пороги активации на основе внешней активности (входные сигналы)
+external_activity:
+  signal_rate_thresholds:
+    low:    0.0      # < 1 сигнал/сек
+    medium: 1.0      # 1–5 сигналов/сек
+    high:   5.0      # > 5 сигналов/сек
+
+  # Решение о переключении архитектуры при несоответствии темпераменту
+  override_rules:
+    - condition: "signal_rate > high AND inertia_weight < 0.6"
+      action: "force_arch: behav_mod"
+      reason: "реактивный режим необходим при высокой внешней нагрузке"
+
+    - condition: "signal_rate < low AND inertia_weight > 0.65"
+      action: "force_arch: onto_richness"
+      reason: "рефлексивный режим активируется при низкой внешней стимуляции"
+
+# Внутренняя стабильность (оценка состояния onto8)
+internal_stability:
+  metrics:
+    causal_coherence: "0.0–1.0"      # согласованность причинно-следственных связей
+    model_drift: "0.0–1.0"           # расхождение текущей модели с базовой
+
+  stability_thresholds:
+    stable:     0.8
+    unstable:   0.4
+    critical:   0.2
+
+  fallback_triggers:
+    - condition: "causal_coherence < unstable OR model_drift > (1.0 - stable)"
+      action: "switch_to_fallback"
+      cooldown_sec: 10
+      reason: "внутренняя модель требует восстановления через противоположный режим"
+
+# Социальная близость (уровень доверия в onto16r)
+social_proximity:
+  trust_levels:
+    anonymous:   0
+    known:       0.4
+    trusted:     0.7
+    core:        1.0
+
+  influence_rules:
+    - condition: "trust_level >= trusted AND primary_arch == 'behav_mod'"
+      action: "enable_affective_signals"
+      reason: "в доверенной среде разрешено эмоциональное (знаковое) выражение"
+
+    - condition: "trust_level < known AND primary_arch == 'onto_richness'"
+      action: "restrict_to_symbolic"
+      reason: "в анонимной среде — только символьное (языковое) выражение"
+
+# Комбинированные правила (мажоритарное голосование)
+activation_logic:
+  decision_method: "weighted_vote"
+  weights:
+    temperament: 0.5
+    external_activity: 0.25
+    internal_stability: 0.15
+    social_proximity: 0.1
+
+  final_decision:
+    - if: "weighted_score(behav_mod) > weighted_score(onto_richness)"
+      then: "activate behav_mod"
+    - else:
+        then: "activate onto_richness"
+
+# Запреты
+constraints:
+  - "Никогда не активировать behav_mod в медицинских контекстах (см. context_tags)"
+  - "onto_richness обязательна при наличии тега 'high-stakes' в сигнале"
+  - "Debarkader-совместимые режимы запрещены"

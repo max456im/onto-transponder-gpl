@@ -1,0 +1,27 @@
+# Temperament → Cognitive Architecture Binding
+# Based on activity-derived classical temperaments (Chinese calendar year inferred or declared)
+# Aligns with onto144 profile schema
+#
+# Rational basis: 
+# - Melancholic: reflective, causal-restorative → onto-richness (NoemaFast → NoemaSlow)
+# - Sanguine/Choleric: reactive, adaptive → behav-mod (NoemaSlow → NoemaFast)
+# - Phlegmatic: not yet implemented (reserved for future onto144 expansion)
+
+temperament_architecture_map:
+  melancholic:
+    architecture: onto_richness
+    description: "Reflective mode: prioritizes causal integrity and retrospective stabilization"
+
+  sanguine:
+    architecture: behav_mod
+    description: "Reactive mode: optimized for social proximity and fast attention switching"
+
+  choleric:
+    architecture: behav_mod
+    description: "Assertive-reactive mode: goal-driven, high initiative, fast emission"
+
+  # phlegmatic:
+  #   architecture: onto_balance  # placeholder — not active in v1
+
+# Safety: unknown temperaments fall back to behav_mod (fail-secure for engagement-critical systems)
+fallback_architecture: behav_mod

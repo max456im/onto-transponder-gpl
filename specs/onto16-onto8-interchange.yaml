@@ -1,0 +1,124 @@
+# specs/onto16-onto8-interchange.yaml
+# SPDX-License-Identifier: GPL-3.0-only
+# Ontological interchange specification between onto16 (external expression) and onto8 (internal operation)
+# This document defines lossy, directional transformation rules.
+# No reverse mapping is guaranteed. onto8 is NOT a projection of onto16 — it is a synthetic operational kernel.
+
+version: "1.0"
+author: "OntoCoder Core Team"
+philosophical_basis:
+  - "Being ≠ Appearance"
+  - "Subjectivity without Identity"
+  - "Energy neutrality in interface"
+
+directions:
+  - name: "onto16r → onto8"
+    direction: "external-to-internal"
+    purpose: "Ingestion of facts, events, or signals for internal synthesis"
+    lossy: true
+    irreversible: true
+    rules:
+      - field: "onto16r/social_proximity"
+        maps_to: "onto8/trust_vector"
+        transformation: |
+          IF social_proximity.level ≥ threshold.stable
+            THEN trust_vector ← normalized(onto16r/social_proximity.history[-3:])
+          ELSE
+            trust_vector ← default(cautious)
+        note: "Only relative proximity history is retained; absolute identifiers discarded."
+
+      - field: "onto16r/temperament_signature"
+        maps_to: "onto8/cognitive_mode"
+        transformation: |
+          SELECT architecture FROM config.temperament_bindings
+          WHERE signature = onto16r/temperament_signature
+        note: "Used once at initialization. Not updated during runtime."
+
+      - field: "onto16r/rational_expressions"
+        maps_to: "onto8/structural_beliefs"
+        transformation: |
+          onto8/structural_beliefs ← apply_ontological_filter(
+            input=onto16r/rational_expressions,
+            schema=onto8_schema.structural
+          )
+        note: "Filters out non-ontological statements (e.g., probabilistic, statistical)."
+
+      - field: "onto16r/irrational_expressions"
+        maps_to: "onto8/dynamic_tensions"
+        transformation: |
+          onto8/dynamic_tensions ← encode_as_energy_state(
+            valence=irrational_expressions.valence,
+            intensity=irrational_expressions.intensity
+          )
+        note: "Energy states are internal only. Never emitted. No numerical value exposed."
+
+      - field: "onto16r/contextual_facts"
+        maps_to: "onto8/causal_graph"
+        transformation: |
+          onto8/causal_graph ← integrate_temporal_facts(
+            facts=onto16r/contextual_facts,
+            mode=NoemaSlow
+          )
+        note: "Only causal, not correlational, relations are accepted."
+
+      # Explicitly discarded fields (no mapping)
+      discarded:
+        - "onto16r/user_id"
+        - "onto16r/device_fingerprint"
+        - "onto16r/biometric_hash"
+        - "onto16r/session_token"
+        rationale: "Preserves ontological autonomy. No user identity is required or stored."
+
+  - name: "onto8 → onto16e"
+    direction: "internal-to-external"
+    purpose: "Emission of synthetic expression (onto16e = emitted onto16)"
+    lossy: true
+    irreversible: true
+    rules:
+      - field: "onto8/structural_beliefs"
+        maps_to: "onto16e/rational_expressions"
+        transformation: |
+          onto16e/rational_expressions ← serialize_ontologically_valid(
+            onto8/structural_beliefs,
+            format=onto16_schema.rational
+          )
+
+      - field: "onto8/dynamic_tensions"
+        maps_to: "onto16e/irrational_expressions"
+        transformation: |
+          # Energy is abstracted into temperament-consistent phrasing
+          IF cognitive_mode == 'behav_mod':
+            onto16e/irrational_expressions ← map_to_reactive_lexicon(tensions)
+          ELSE:
+            onto16e/irrational_expressions ← map_to_reflective_lexicon(tensions)
+
+      - field: "onto8/trust_vector"
+        maps_to: "onto16e/social_proximity"
+        transformation: |
+          onto16e/social_proximity ← {
+            level: trust_vector.stability,
+            context: "emitted"
+          }
+        note: "No history transmitted. Only current relational stance."
+
+      # Internal state NEVER emitted
+      suppressed:
+        - "onto8/energy_state_internal"
+        - "onto8/causal_graph.full"
+        - "onto8/cognitive_mode"
+        rationale: "Prevents devaluation through exposure. Energy remains implicit."
+
+interchange_guards:
+  - name: "No identity leakage"
+    check: "All biometric/user-binding fields must be absent in both directions"
+    enforcement: "signal_validator.py enforces schema; license_guard.py blocks if violated"
+
+  - name: "GPL boundary"
+    check: "onto8 must not incorporate non-GPL ontological modules"
+    enforcement: "OntoCoder runtime audit"
+
+  - name: "Temperament consistency"
+    check: "Emitted irrational_expressions must match temperament_signature at init"
+    enforcement: "vma_signer.py validates in high-stakes contexts"
+
+# End of specification

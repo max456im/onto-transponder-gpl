@@ -1,0 +1,11 @@
+# Core dependencies (all compatible with GPL-3.0-only)
+pyyaml>=6.0
+jsonschema>=4.18.0
+cryptography>=41.0.0
+typing-extensions>=4.7.0
+
+# VMA integration (assumed to be your own GPL-licensed module)
+# vma-core @ git+https://github.com/yourorg/vma-core.git@main
+
+# Note: No non-GPL or ambiguous-license packages allowed.
+# All transitive dependencies must be GPL-compatible.

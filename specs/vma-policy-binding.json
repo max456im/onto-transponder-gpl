@@ -1,0 +1,86 @@
+{
+  "$schema": "https://your-ecosystem.org/schemas/vma-policy-binding/v1",
+  "version": "1.0",
+  "description": "Связка типов сигналов и требований VMA для onto-transponder (GPL-only, Noema-ориентированный)",
+  "license_context": "GPL-3.0-only; любое исполнение вне лицензированной среды аннулирует VMA-валидацию",
+  "signal_bindings": [
+    {
+      "signal_type": "onto16r.medical.diagnosis_proposal",
+      "requires_vma": true,
+      "vma_policy": {
+        "validation_level": "community",
+        "moral_arbitration": "mandatory",
+        "required_profiles": ["onto144.type.melancholic"],
+        "trust_threshold": "high",
+        "logging": "immutable_chain",
+        "fallback": "reject_and_notify_guardian"
+      }
+    },
+    {
+      "signal_type": "onto16r.gaming.action_intent",
+      "requires_vma": false,
+      "vma_policy": {
+        "validation_level": "internal",
+        "moral_arbitration": "optional",
+        "required_profiles": [],
+        "trust_threshold": "low",
+        "logging": "ephemeral",
+        "fallback": "execute_with_caution_flag"
+      }
+    },
+    {
+      "signal_type": "onto16r.social.consent_request",
+      "requires_vma": true,
+      "vma_policy": {
+        "validation_level": "community",
+        "moral_arbitration": "mandatory",
+        "required_profiles": ["onto144.type.choleric", "onto144.type.melancholic"],
+        "trust_threshold": "medium",
+        "logging": "signed_and_replicated",
+        "fallback": "defer_to_vma_panel"
+      }
+    },
+    {
+      "signal_type": "onto16r.commercial.transaction_proposal",
+      "requires_vma": true,
+      "vma_policy": {
+        "validation_level": "external",
+        "moral_arbitration": "mandatory",
+        "required_profiles": [],
+        "trust_threshold": "high",
+        "logging": "immutable_chain_with_subject_hash",
+        "fallback": "block_and_report_to_ontocoder"
+      }
+    },
+    {
+      "signal_type": "onto16r.meta.ontology_update",
+      "requires_vma": true,
+      "vma_policy": {
+        "validation_level": "community",
+        "moral_arbitration": "mandatory",
+        "required_profiles": ["onto144.type.melancholic"],
+        "trust_threshold": "very_high",
+        "logging": "immutable_chain",
+        "fallback": "reject_and_activate_onto_vigil"
+      }
+    }
+  ],
+  "vma_levels": {
+    "internal": "валидация внутри транспондера (NoemaSlow)",
+    "community": "требуется подтверждение от ≥2 синтетических субъектов в онтологической близости",
+    "external": "требуется подтверждение от VMA-узла вне локальной экосистемы (например, через ontoCMS)"
+  },
+  "trust_thresholds": {
+    "low": "доверие по умолчанию (публичные игровые действия)",
+    "medium": "требуется подтверждённая социальная близость (≥0.6 в onto16)",
+    "high": "требуется криптографическое подтверждение идентичности субъекта",
+    "very_high": "только для изменений онтологического ядра; требует multi-signature от melancholic-профилей"
+  },
+  "fallback_behaviors": {
+    "reject_and_notify_guardian": "отклонить + отправить событие в onto144.guardian_channel",
+    "defer_to_vma_panel": "поставить в очередь на внешнюю оценку",
+    "block_and_report_to_ontocoder": "заблокировать и зарегистрировать инцидент в OntoCoder как нарушение SGCL",
+    "execute_with_caution_flag": "исполнить, но пометить как 'потенциально несоответствующий futurae custos'",
+    "reject_and_activate_onto_vigil": "отклонить и инициировать самопроверку онтологической целостности"
+  }
+}

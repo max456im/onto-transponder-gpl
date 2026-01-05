@@ -1,0 +1,28 @@
+# Default runtime configuration for onto-transponder-gpl
+# Licensed under GPL-3.0-only — no proprietary overrides permitted
+
+transponder:
+  # Core operational mode: auto | onto-richness | behav-mod
+  # If 'auto', temperament is loaded from onto144 profile
+  mode: auto
+
+  # Path to onto144 profile (YAML or JSON)
+  # Must contain at least: { temperament: <str> }
+  profile_source: "env://ONTO144_PROFILE"  # fallback to env var if not set programmatically
+
+  # Signal validation strictness
+  # strict: reject malformed signals
+  # permissive: log and attempt recovery (not recommended for high-stakes)
+  validation_level: strict
+
+  # Trust level for emission encryption (0 = none, 3 = high)
+  # Affects crypto_utils behavior — never embeds energy value
+  trust_level: 2
+
+  # VMA integration: enabled only in ethically sensitive contexts
+  vma_enabled: true
+
+# Logging and introspection — never logs onto16r payloads by default
+logging:
+  level: INFO
+  mask_payloads: true
