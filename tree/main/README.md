@@ -7,15 +7,19 @@
 - **Автор**: Maksim Zapevalov ([ORCID](https://orcid.org/0009-0003-0996-3532))
 
 irreversibility-test/
+
 ├── LICENSE                         
 ├── README.md                       
 ├── experiment.rs                   
 ├── onto16/
+
 │   ├── lib.rs                      
 │   └── profile.rs                  
 ├── triggers/
+
 │   └── stress-phi-07.onto          
 ├── logs/
+
 │   └── sample-run.ndjson           
 ├── Cargo.toml                      
 └── .gitignore
@@ -33,3 +37,4 @@ cargo run --release
 
 
 ⚠️ Этот эксперимент не моделирует юридическую ответственность. Он фокусируется на измеримой онтологической устойчивости.
+
