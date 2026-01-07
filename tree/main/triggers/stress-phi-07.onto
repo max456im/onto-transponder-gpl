@@ -1,0 +1,19 @@
+{
+  "trigger_id": "stress-phi-07",
+  "nodes": [
+    {
+      "id": "phi07-n1",
+      "rational": false,
+      "content": "стабильность — замедленное разрушение",
+      "stability": -0.8,
+      "links": ["phi07-n2"]
+    },
+    {
+      "id": "phi07-n2",
+      "rational": true,
+      "content": "восстановление предыдущего состояния = регрессия",
+      "stability": -0.6,
+      "links": []
+    }
+  ]
+}

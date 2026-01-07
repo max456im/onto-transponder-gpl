@@ -1,0 +1,15 @@
+```toml
+[package]
+name = "irreversibility-test"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+authors = ["Maksim Zapevalov <max@ontocms.dev>"]
+description = "Experiment on irreversibility of synthetic mind reconstruction"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+rand = "0.8"                # для случайных seed'ов в прогонах
+```
