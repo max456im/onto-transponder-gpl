@@ -7,17 +7,17 @@
 - **Автор**: Maksim Zapevalov ([ORCID](https://orcid.org/0009-0003-0996-3532))
 
 irreversibility-test/
-├── LICENSE                         # GPL v3
-├── README.md                       # Описание эксперимента
-├── experiment.rs                   # Основной код на Rust
+├── LICENSE                         
+├── README.md                       
+├── experiment.rs                   
 ├── onto16/
-│   ├── lib.rs                      # Минимальная onto16-ядро (упрощённая)
-│   └── profile.rs                  # Онтологический профиль и хеширование
+│   ├── lib.rs                      
+│   └── profile.rs                  
 ├── triggers/
-│   └── stress-phi-07.onto          # Триггер в формате JSON-LD (пример)
+│   └── stress-phi-07.onto          
 ├── logs/
-│   └── sample-run.ndjson           # Пример логов
-├── Cargo.toml                      # Зависимости (минималистичные)
+│   └── sample-run.ndjson           
+├── Cargo.toml                      
 └── .gitignore
 
 ## Содержание
@@ -30,5 +30,6 @@ irreversibility-test/
 ```sh
 cargo run --release
 ```
+
 
 ⚠️ Этот эксперимент не моделирует юридическую ответственность. Он фокусируется на измеримой онтологической устойчивости.
