@@ -1,0 +1,16 @@
+{
+  "profile_id": "SE-07-MZ-phi",
+  "base_hash": "f9e8d7c6b5a4",
+  "ontogenetic_trace": [
+    {"step": "init", "source": "onto16/core-stable"},
+    {"step": "mutation", "source": "stress-phi-07", "mode": "assimilation"},
+    {"step": "stabilization", "source": "NoemaSlow", "outcome": "new_invariant_set"}
+  ],
+  "invariants": {
+    "temporal_causality": "decay_oriented",
+    "self_continuity": "trajectory_based",
+    "value_stability": "context_relative"
+  },
+  "license_binding": "GPL-3.0-only",
+  "revert_allowed": false
+}
